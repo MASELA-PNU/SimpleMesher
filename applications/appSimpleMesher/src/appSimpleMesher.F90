@@ -53,6 +53,10 @@ Implicit None
 
         do iMesh = 1, nMeshList
 
+            Call GURU%Write( &
+            &   msg = "  * Generating mesh :"//meshList(iMesh)%Chars() )
+            Call GURU%Write( " " )
+
             !!... Get Sub JSON Child
             Call JSON_GetChild( jsonInput, meshList(iMesh)%Chars(), jsonMesh )
 
@@ -126,6 +130,12 @@ Implicit None
 
     End Block GenerateSingleMeshes
 
+    Call GURU%Write( "Total Mesh Info" )
+    Call GURU%Write( " " )
+    Call GURU%Write( "  - Number of Node  : "//Int2Char(nNode) )
+    Call GURU%Write( "  - Number of Panel : "//Int2Char(nPanel) )
+    Call GURU%Write( " " )
+
     blkGetherMeshes: Block
         Character(len=:), Allocatable :: outName
 
@@ -135,13 +145,24 @@ Implicit None
         !!... Get Out Name
         Call JSON_GetCharOrDefault( jsonInput, "outName", outName, "finalMesh")
 
+        Call GURU%Write( &
+        &   msg = "  * Writing VTK File: "//outName//".vtk"//" \n" )
+        Call GURU%Write( " " )
+
         !!... Write VTK Format
         Call finalMesh%WriteVTK( outName )
+
+        Call GURU%Write( &
+        &   msg = "  * Writing HydroStar File: "//outName//".hst" )
+        Call GURU%Write( " " )
 
         !!... Write HydroStar Mesh File
         Call finalMesh%WriteHydroStarMesh( outName )
 
     End Block blkGetherMeshes
+
+        Call GURU%Write( "Done." )
+        Call GURU%Write( " " )
 
 
 !! -------------------------------------------------------------------------- !!
