@@ -1,0 +1,16 @@
+{
+    "meshList":["column1"],
+    "outName":"SingleCylinder",
+    "column1":
+    {
+        "meshType":"axisBody",
+        "axisBody":
+        {
+            "radius":[4.0, 4.0, 0.001],
+            "zPos":[0.0,  -8.0, -8.0],
+            "nDiscretization":[10, 5],
+            "nQuaterTheta":5,
+            "centerMove":[0.0, 0.0, 0.0]
+        }
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "meshList":["column1", "column2", "column3"],
+    "outName":"FOWT_Sub",
+    "column1":
+    {
+        "meshType":"axisBody",
+        "axisBody":
+        {
+            "radius":[4.0, 4.0,   6.5,   6.5,  0.001],
+            "zPos":[0.0,  -8.0, -10.0, -11.0, -11.0 ],
+            "nDiscretization":[10, 4, 2, 10],
+            "nQuaterTheta":5,
+            "centerMove":[-10.0, -5.7735, 0.0]
+        }
+    }
+    ,
+    "column2":
+    {
+        "meshType":"axisBody",
+        "axisBody":
+        {
+            "radius":[4.0, 4.0,   6.5,   6.5,  0.001],
+            "zPos":[0.0,  -8.0, -10.0, -11.0, -11.0 ],
+            "nDiscretization":[10, 4, 2, 10],
+            "nQuaterTheta":5,
+            "centerMove":[10.0, -5.7735, 0.0]
+        }
+    }
+    ,
+    "column3":
+    {
+        "meshType":"axisBody",
+        "axisBody":
+        {
+            "radius":[4.0, 4.0,   6.5,   6.5,  0.001],
+            "zPos":[0.0,  -8.0, -10.0, -11.0, -11.0 ],
+            "nDiscretization":[10, 4, 2, 10],
+            "nQuaterTheta":5,
+            "centerMove":[0.0, 11.5470, 0.0]
+        }
+    }
+}
