@@ -120,6 +120,15 @@ Subroutine WriteHydroStarMesh_typSurfMesh(this, fileName)
     !!
     Open(newunit = fid, file = filePath, status = "replace")
 
+    write(fid, 1101) "NBBODY", 1
+    write(fid, 1102) "SYMMETRY_BODY", 0, 0
+    write(fid, 1103) "RHO",     1025.0
+    write(fid, 1103) "GRAVITY", 9.806
+
+    1101 format(a,2x,i5)
+    1102 format(a,2x,2(i5))
+    1103 format(a,2x,f12.1)
+
     !!... Write Node Info
     write(fid, 1001) "COORDINATES"
     do iNode = 1, this%nNode
