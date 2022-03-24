@@ -18,6 +18,8 @@ Subroutine Initialize_typSurfMeshAxisBody( this, json )
     !!... Check input parameters
     Block
         Integer :: nRadius, nZPos, nDiscretization
+        Integer :: iCoord
+        Real(RP) :: dr, dz, dl
 
         nRadius         = size(this%radius)
         nZPos           = size(this%zPos)
@@ -50,6 +52,41 @@ Subroutine Initialize_typSurfMeshAxisBody( this, json )
             &   head = "Initialize_typSurfMeshAxisBody" )
         End if
 
+        !!... Check Radius
+        do iCoord = 1, this%nCoord
+
+            if ( this%radius(iCoord).le.1.D-4 ) then
+                Call GURU%Warn( &
+                &   msg   = "i-th 'radius' is smaller than 1e-4. It is changed to 1e-4.", &
+                &   head  = "Initialize_typSurfMeshAxisBody", &
+                &   value = iCoord )
+                this%radius(iCoord) = 1.D-4
+            end if
+
+        end do
+
+        !!... Check Radius and Z & Discretiazation
+        do iCoord = 1, this%nCoord-1
+
+            dr = this%radius(iCoord+1) - this%radius(iCoord)
+            dz = this%zPos(iCoord+1)   - this%zPos(iCoord)
+            dl = dr * dr + dz * dz
+
+            if (dl.le.1.D-8) then
+                Call GURU%Error( &
+                &   msg   = "i-th point and the next point are located too close.", &
+                &   head  = "Initialize_typSurfMeshAxisBody", &
+                &   value = iCoord )
+            end if
+
+            if ( this%nDiscretization(iCoord).le.1 ) then
+                Call GURU%Error( &
+                &   msg   = "i-th 'nDiscretization' is smaller than 2. It should be larger than 1.", &
+                &   head  = "Initialize_typSurfMeshAxisBody", &
+                &   value = iCoord )
+            End if
+
+        end do
 
     End Block
 

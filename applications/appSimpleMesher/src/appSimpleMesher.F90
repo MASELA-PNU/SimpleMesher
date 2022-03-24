@@ -8,14 +8,43 @@ Implicit None
 
     !!... Initialization
     blkInitialization: Block
+        Logical :: isError, isExist, isOpen
+        Integer :: iter
+        Character(len=300) :: inputFileChar
 
         !!... Initialize GURU
         Call InitializeGURU()
 
         !!... Get Input JSON file path from argument
-        Call GURU%GetArgChar( &
-        &   key   = "input", &
-        &   value = jsonInputFilePath )
+        Call GURU%GetArgChar(   &
+        &   key     = "input",              &
+        &   value   = jsonInputFilePath,    &
+        &   isError = isError )
+
+        if ( isError ) then
+
+            loopInputJSON: do iter = 1, 10
+
+                Call GURU%Write( "Please insert the input file path: " )
+                Call GURU%Write( " " )
+                read(*,*) inputFileChar
+
+                If (Allocated(jsonInputFilePath)) Deallocate(jsonInputFilePath)
+                jsonInputFilePath = inputFileChar
+
+                Inquire( file   = jsonInputFilePath, &
+                &        exist  = isExist )
+
+                if ( isExist ) then
+                    exit loopInputJSON
+                else
+                    Call GURU%Write( "File do not exist. Please check again. " )
+                    Call GURU%Write( " " )
+                end if
+
+            end do loopInputJSON
+
+        end if
 
         !!... Get Input JSON
         Call JSON_ReadFile( &
