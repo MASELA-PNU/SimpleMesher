@@ -121,7 +121,7 @@ Subroutine WriteHydroStarMesh_typSurfMesh(this, fileName)
     Open(newunit = fid, file = filePath, status = "replace")
 
     write(fid, 1101) "NBBODY", 1
-    write(fid, 1102) "SYMMETRY_BODY", 0, 0
+    write(fid, 1102) "SYMMETRY_BODY", 1, 0
     write(fid, 1103) "RHO",     1025.0
     write(fid, 1103) "GRAVITY", 9.806
 
@@ -145,7 +145,7 @@ Subroutine WriteHydroStarMesh_typSurfMesh(this, fileName)
             nodeLabels(imod) = this%panel(iPanel)%NodeLabel(imod)
         end do
 
-        write(fid, 1003) iPanel, nodeLabels(:)
+        write(fid, 1003) nodeLabels(:)
     end do
     write(fid, 1001) "ENDPANEL"
     write(fid, 1001) " "
