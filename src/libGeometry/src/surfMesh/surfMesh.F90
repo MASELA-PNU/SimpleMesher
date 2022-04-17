@@ -16,6 +16,8 @@ Implicit None
 
 #include "surfMeshAxisBody/surfMeshAxisBody.typ"
 
+#include "surfMeshBarge/surfMeshBarge.typ"
+
 !! -------------------------------------------------------------------------- !!
 Contains
 !! -------------------------------------------------------------------------- !!
@@ -29,6 +31,8 @@ Contains
 #include "surfMesh/surfMesh.inc"
 
 #include "surfMeshAxisBody/surfMeshAxisBody.inc"
+
+#include "surfMeshBarge/surfMeshBarge.inc"
 
 !! -------------------------------------------------------------------------- !!
 End Module

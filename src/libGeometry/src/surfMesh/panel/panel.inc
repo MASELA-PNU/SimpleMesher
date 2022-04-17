@@ -305,6 +305,27 @@
 
     End Subroutine
 
+    Subroutine Revert_typPanel(this)
+        Implicit None
+        Class(typPanel), intent(inout) :: this
+        Integer, Allocatable :: nodeLabel(:)
+        Integer :: iNode
+
+        If ( Allocated(this%nodeLabel_) ) then
+
+            Call Move_Alloc( this%nodeLabel_, nodeLabel )
+            Allocate( this%nodeLabel_(this%nNode_) )
+
+            do iNode = 1, this%nNode_
+                this%nodeLabel_(iNode) = nodeLabel( this%nNode_ + 1 - iNode)
+            end do
+
+            If (Allocated(nodeLabel)) Deallocate(nodeLabel)
+
+        End if
+
+    End Subroutine
+
 !! ------------------------------------------------------------------ !!
 !! End Procedures
 !! ------------------------------------------------------------------ !!

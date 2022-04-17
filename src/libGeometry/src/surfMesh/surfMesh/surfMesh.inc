@@ -11,6 +11,7 @@ Subroutine InitializeSurfMesh( surfMesh, json )
     Type(typJSON), Pointer        :: jsonMesh
     !!... Each Mesh
     Type(typSurfMeshAxisBody) :: axisBody
+    Type(typSurfMeshBarge)    :: barge
 
     !!... Local Variables
     ! Type(typParaPipeMesh)           :: paraPipeMesh
@@ -34,6 +35,13 @@ Subroutine InitializeSurfMesh( surfMesh, json )
 
         !!... Allocate
         Allocate( surfMesh, source = axisBody )
+
+    else If ( isStringEqual(meshType, "barge") ) then
+
+        Call barge%Initialize( json = jsonMesh )
+
+        !!... Allocate
+        Allocate( surfMesh, source = barge )
 
     else
 

@@ -85,6 +85,9 @@
         !! Destroy Panel Type
         procedure, pass, public :: Destroy => Destroy_typPanel
 
+        !!... Revert the order
+        Procedure :: Revert => Revert_typPanel
+
     end type
 
 !! ------------------------------------------------------------------ !!

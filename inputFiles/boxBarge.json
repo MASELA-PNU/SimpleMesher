@@ -1,0 +1,18 @@
+{
+    "meshList":["barge"],
+    "outName":"barge",
+    "barge":
+    {
+        "meshType":"barge",
+        "barge":
+        {
+            "length":100,
+            "breadth":20,
+            "depth":10.0,
+            "nX":10,
+            "nY":5,
+            "nZ":4,
+            "centerMove":[0.0, 0.0, 0.0]
+        }
+    }
+}
