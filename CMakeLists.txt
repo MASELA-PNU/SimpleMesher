@@ -72,8 +72,19 @@ if ("${PATH_EaFort}" STREQUAL "")
     message( FATAL_ERROR )
 endif()
 
-set( LIB_PATH_EaFort ${PATH_EaFort}/lib/libEaFort.a )
-set( INC_PATH_EaFort ${PATH_EaFort}/include/ )
+if( WIN32 )
+
+    set( LIB_PATH_EaFort ${PATH_EaFort}/lib/Debug/EaFort.lib )
+    set( INC_PATH_EaFort ${PATH_EaFort}/include/Debug/ )
+
+elseif( UNIX )
+    set( LIB_PATH_EaFort ${PATH_EaFort}/lib/libEaFort.a )
+    set( INC_PATH_EaFort ${PATH_EaFort}/include/ )
+else()
+    message(" ${BoldRed} In this environment, cmake with project is not validated. \n")
+    message(" ${ColourReset} ")
+    message( FATAL_ERROR )
+endif()
 
 set(LIB_PATH_EXTLIB ${LIB_PATH_EaFort})
 set(INC_PATH_EXTLIB ${INC_PATH_EaFort})
