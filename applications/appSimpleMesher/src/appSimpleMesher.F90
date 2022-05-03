@@ -193,6 +193,9 @@ Implicit None
         Call GURU%Write( "Done." )
         Call GURU%Write( " " )
 
+        Call GURU%Write( "Please insert any key to exit. " )
+        Call GURU%Write( " " )
+        Read(*,*)
 
 !! -------------------------------------------------------------------------- !!
 End Program
