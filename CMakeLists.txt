@@ -67,19 +67,20 @@ message("${ColourReset}")
 ## Extra Lib Path ----------------------------------------------------------- ##
 
 if ("${PATH_EaFort}" STREQUAL "")
-    message(" ${BoldRed} No PATH_EaFort is defined. Please check CMakeOptions.cmake \n")
+    message(" ${BoldRed} No PATH_EaFort is defined. Please check CMakeOptions.cmake\n")
+    message("${Yellow}  * Example: ")
+    message(" ${ColourReset} ")
+    message("    $ cmake -S. -Bbuid -DPATH_EaFort=/home/user/Utility/EaFort")
     message(" ${ColourReset} ")
     message( FATAL_ERROR )
 endif()
 
 if( WIN32 )
-
     set( LIB_PATH_EaFort ${PATH_EaFort}/lib/Debug/EaFort.lib )
-    set( INC_PATH_EaFort ${PATH_EaFort}/include/Debug/ )
-
+    set( INC_PATH_EaFort ${PATH_EaFort}/lib/Debug/ )
 elseif( UNIX )
     set( LIB_PATH_EaFort ${PATH_EaFort}/lib/libEaFort.a )
-    set( INC_PATH_EaFort ${PATH_EaFort}/include/ )
+    set( INC_PATH_EaFort ${PATH_EaFort}/lib/ )
 else()
     message(" ${BoldRed} In this environment, cmake with project is not validated. \n")
     message(" ${ColourReset} ")
